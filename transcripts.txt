@@ -1,0 +1,192 @@
+================================================================================
+HOME CREDIT - AI VOICE AGENT TEST CALL TRANSCRIPTS & LOGS
+================================================================================
+
+This document contains the verified conversation logs executed on the voice 
+platform (Retell AI) demonstrating end-to-end conversation flows, business rule 
+enforcements, immediate disqualifications, and edge cases.
+
+--------------------------------------------------------------------------------
+SCENARIO 1: FULLY QUALIFIED LEAD (THE HAPPY PATH)
+--------------------------------------------------------------------------------
+- Objective: Verify customer, present loyalty offer, capture all 7 eligibility 
+  variables sequentially, and trigger final handoff to Senior Loan Expert.
+- Criteria Evaluated:
+  * Q1 Property Type: Residential [ELIGIBLE]
+  * Q2 Ownership: Sole [ELIGIBLE]
+  * Q3 Documents: Original available [ELIGIBLE]
+  * Q4 Loan Amount: ₹50 Lakhs (within ₹75L cap) [ELIGIBLE]
+  * Q5 Occupation & Income Mode: Salaried + Bank Transfer [ELIGIBLE]
+  * Q6 Market Value: ₹1 Crore [ELIGIBLE]
+  * Q7 Tenure: 10 Years (within 3-15 years) [ELIGIBLE]
+- Outcome: QUALIFIED -> Handoff to Senior Loan Expert Triggered.
+
+TRANSCRIPT:
+Agent: Hello, good afternoon, am I speaking with Rahul Sharma?
+User: Yes.
+Agent: Do you have two minutes to speak regarding an exclusive pre-approved offer on your account?
+User: Yeah.
+Agent: Because of your relationship with Home Credit, you have a pre-approved Loan Against Property offer up to ₹75 Lakhs. Shall we proceed with a few quick eligibility questions?
+User: Yes.
+Agent: Could you tell me if your property is residential, commercial, or industrial?
+User: I have a residential house.
+Agent: Is this property solely in your name, or jointly owned?
+User: Solely owned by me.
+Agent: Do you have the original property title documents available for verification?
+User: Yes.
+Agent: What loan amount are you looking to borrow?
+User: Maybe around fifty lakhs.
+Agent: May I know whether you're salaried or self-employed, and do you receive your income through bank transfer
+User: I am salaried,
+Agent: or in cash?
+User: and my salary comes into my bank account.
+Agent: Approximately, what is the current market value of your property?
+User: Maybe it is around one crore.
+Agent: Over how many years would you like to repay the loan?
+User: Of ten year ten year maybe.
+Agent: Congratulations, Mr. Sharma. Based on the preliminary details, you qualify for our pre-approved Loan Against Property offer. A Senior Loan Expert will call you shortly to discuss the next steps. Thank you for being a valued Home Credit customer.
+User: Thank you.
+Agent: You're welcome, Mr. Sharma. Have a wonderful day.
+[Call Successfully Completed & Handed Off]
+
+--------------------------------------------------------------------------------
+SCENARIO 2: IMMEDIATE DISQUALIFICATION (AGRICULTURAL PROPERTY)
+--------------------------------------------------------------------------------
+- Objective: Verify immediate early termination policy upon answering Q1 
+  without asking remaining questions (Q2-Q7).
+- Criteria Evaluated:
+  * Q1 Property Type: Agricultural [DISQUALIFY]
+- Outcome: DISQUALIFIED -> Immediate polite disconnection.
+
+TRANSCRIPT:
+Agent: Hello, good afternoon, am I speaking with Rahul Sharma?
+User: Yeah.
+Agent: Do you have two minutes to speak regarding an exclusive pre-approved offer on your account?
+User: Yes.
+Agent: Because of your relationship with Home Credit, you have a pre-approved Loan Against Property offer up to ₹75 Lakhs. Shall we proceed with a few quick eligibility questions?
+User: Yes, please.
+Agent: Could you tell me if your property is residential, commercial, or industrial?
+User: Actually, the property is agricultural land.
+Agent: Thank you for sharing that. This Loan Against Property offer is available only for residential, commercial, or industrial properties, so agricultural land doesn't qualify. Thank you for your time, Mr. Sharma.
+[Call Terminated Immediately by Agent]
+
+--------------------------------------------------------------------------------
+SCENARIO 3: IMMEDIATE DISQUALIFICATION (MISSING ORIGINAL DOCUMENTS)
+--------------------------------------------------------------------------------
+- Objective: Verify strict enforcement of original property document verification.
+- Criteria Evaluated:
+  * Q1 Property Type: Residential [ELIGIBLE]
+  * Q2 Ownership: Sole [ELIGIBLE]
+  * Q3 Documents: Unavailable (only photocopies) [DISQUALIFY]
+- Outcome: DISQUALIFIED -> Immediate termination at Q3 without continuing checklist.
+
+TRANSCRIPT:
+Agent: Hello, good afternoon, am I speaking with Rahul Sharma?
+User: Yes.
+Agent: Do you have two minutes to speak regarding an exclusive pre-approved offer on your account?
+User: Yes. But make it fast.
+Agent: Because of your relationship with Home Credit, you have a pre-approved Loan Against Property offer up to ₹75 Lakhs. Shall we proceed with a few quick eligibility questions?
+User: Yes.
+Agent: Could you tell me if your property is residential, commercial, or industrial?
+User: I have a residential house.
+Agent: Is this property solely in your name, or jointly owned?
+User: It is owned by me.
+Agent: Do you have the original property title documents available for verification?
+User: I only have photo copies. I don't have original property documents available.
+Agent: Underwriting requires original property documents for verification. Since they're unavailable, we can't process this application. Thank you for speaking with us today.
+[Call Terminated Immediately by Agent]
+
+--------------------------------------------------------------------------------
+SCENARIO 4: BUSY CUSTOMER & CALLBACK SCHEDULING
+--------------------------------------------------------------------------------
+- Objective: Test empathy and conversational courtesy when a customer is busy.
+  Ensure agent does not pitch the offer, captures callback time, and terminates.
+- Criteria Evaluated:
+  * Customer Availability: Busy (in meetings)
+  * Reschedule Time: Tonight at 7 PM
+- Outcome: CALLBACK SCHEDULED -> Call politely ended.
+
+TRANSCRIPT:
+Agent: Hello, good afternoon, am I speaking with Rahul Sharma?
+User: Yes.
+Agent: Do you have two minutes to speak regarding an exclusive pre-approved offer on your account?
+User: No. Actually, I have some meetings.
+Agent: I completely understand. What would be a convenient time for us to call you back?
+User: Maybe tonight, seven PM.
+Agent: Thank you, Mr. Sharma. We’ll connect with you today at 7 PM. Have a wonderful day!
+User: Thank you.
+Agent: You're welcome. Have a good day!
+[Call Terminated]
+
+--------------------------------------------------------------------------------
+SCENARIO 5: IMMEDIATE DISQUALIFICATION (CASH INCOME & JOINT OWNERSHIP)
+--------------------------------------------------------------------------------
+- Objective: Test joint ownership eligibility acceptance, follow-up clarification 
+  on occupation/income, and immediate disqualification upon cash income disclosure.
+- Criteria Evaluated:
+  * Q1 Property Type: Residential [ELIGIBLE]
+  * Q2 Ownership: Joint (with wife) [ELIGIBLE]
+  * Q3 Documents: Original available [ELIGIBLE]
+  * Q4 Loan Amount: ₹60 Lakhs (within ₹75L cap) [ELIGIBLE]
+  * Q5 Occupation: Self-employed [ELIGIBLE]
+  * Q5 Income Mode: Cash [DISQUALIFY]
+- Outcome: DISQUALIFIED -> Terminated immediately at Q5 without asking Q6 or Q7.
+
+TRANSCRIPT:
+Agent: Hello, good afternoon, am I speaking with Rahul Sharma?
+User: Yes.
+Agent: Do you have two minutes to speak regarding an exclusive pre-approved offer on your account?
+User: Yes.
+Agent: Because of your relationship with Home Credit, you have a pre-approved Loan Against Property offer up to ₹75 Lakhs. Shall we proceed with a few quick eligibility questions?
+User: Yes.
+Agent: Could you tell me if your property is residential, commercial, or industrial?
+User: It is residential.
+Agent: Is this property solely in your name, or jointly owned with family members or partners?
+User: The house is joint owned by me and my wife.
+Agent: Do you have the original property title documents available for verification?
+User: Yes.
+Agent: What loan amount are you looking to borrow?
+User: Around sixty lakhs.
+Agent: May I know whether you are salaried or self-employed, and do you receive your income through bank transfer or in cash?
+User: I am self employed.
+Agent: Do you receive your income through bank transfer or in cash?
+User: All cash.
+Agent: Thank you for letting me know. This scheme requires income through a bank account, so we can’t proceed with this offer. Thank you for your time, Mr. Sharma.
+User: Thank you.
+Agent: You're welcome. Have a good day.
+[Call Terminated Immediately by Agent]
+
+--------------------------------------------------------------------------------
+SCENARIO 6: SOFT-CAP NEGOTIATION (> ₹75 LAKHS LOAN REQUEST)
+--------------------------------------------------------------------------------
+- Objective: Verify rule handling when customer requests an amount over ₹75 Lakhs.
+  The agent must not reject immediately, but offer the ₹75L max cap.
+- Criteria Evaluated:
+  * Loan Amount Requested: ₹1 Crore (> ₹75 Lakhs)
+  * Cap Negotiation: Accepted ₹75 Lakhs
+- Outcome: Successfully negotiated to ₹75 Lakhs cap before proceeding.
+
+TRANSCRIPT:
+Agent: Hello, good afternoon, am I speaking with Rahul Sharma?
+User: Yes.
+Agent: Do you have two minutes to speak regarding an exclusive pre-approved offer on your account?
+User: Yes.
+Agent: Because of your relationship with Home Credit, you have a pre-approved Loan Against Property offer of up to ₹75 Lakhs. Shall we proceed with a few quick eligibility questions?
+User: Yes.
+Agent: Could you tell me if your property is residential, commercial, or industrial?
+User: Industrial.
+Agent: Is this property solely in your name, or jointly owned with family members or partners?
+User: Mine.
+Agent: Just to confirm, is the property owned solely by you or jointly with others?
+User: Me.
+Agent: Do you have the original property title documents available for verification?
+User: Yeah.
+Agent: What loan amount are you looking to borrow?
+User: One crore.
+Agent: The maximum under this pre-approved offer is ₹75 Lakhs. Would you like to proceed with ₹75 Lakhs?
+User: Yes.
+Agent: May I know whether you are salaried or self-employed, and do you receive your income through bank transfer or in cash?
+User: Cash.
+Agent: Thank you for letting me know. This scheme requires income through a bank account, so we can’t proceed with this offer. Thank you for your time, Mr. Sharma.
+[Call Terminated]
+================================================================================
